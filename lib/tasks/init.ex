@@ -8,12 +8,14 @@ defmodule Mix.Tasks.Init do
         IO.puts("An error occurred while initializing the database")
 
       :ok ->
-        case Git.clone([
-                "https://github.com/FriendsOfPHP/security-advisories",
-                "priv/security-advisories"
-              ]) do
-          {:ok, repo} -> IO.puts("#{repo} cloned successfully")
-          {:error, reason} -> IO.puts("Unable to clone #{repo}: #{reason}")
+        repo = "https://github.com/FriendsOfPHP/security-advisories"
+        dest = "priv/security-advisories"
+
+        unless File.exists?(dest) do
+          case Git.clone([repo, dest]) do
+            {:ok, _} -> IO.puts("#{repo} cloned successfully in #{dest}")
+            {:error, reason} -> IO.puts("Unable to clone: #{reason}")
+          end
         end
 
         Mnesia.wait_for_tables([:dependency], 5000)
