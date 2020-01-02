@@ -16,7 +16,7 @@ Github](https://github.com/FriendsOfPHP/security-advisories).
 
 In this database we can find a list of packages and their known vulnerable
 versions. After checking how this information is presented to the user (YAML
-files with a list of ranges in the form ```[[lower\_vulnerable\_version\_range, upper\_vulnerable\_version\_range_], ...]```)
+files with a list of ranges in the form ```[[lower_vulnerable_version_range, upper_vulnerable_version_range_], ...]```)
 I implemented a checker using the elixir builtin [`Version` module](https://hexdocs.pm/elixir/Version.html),
 which is able to parse versions following the SemVer syntax.
 A version is vulnerable if it's contained in any of the known vulnerable version
