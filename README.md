@@ -16,7 +16,7 @@ Github](https://github.com/FriendsOfPHP/security-advisories).
 
 In this database we can find a list of packages and their known vulnerable
 versions. After checking how this information is presented to the user (YAML
-files with a list of ranges in the form [[lower\_vulnerable\_version\_range, upper\_vulnerable\_version\_range_], ...])
+files with a list of ranges in the form ```[[lower\_vulnerable\_version\_range, upper\_vulnerable\_version\_range_], ...]```)
 I implemented a checker using the elixir builtin [`Version` module](https://hexdocs.pm/elixir/Version.html),
 which is able to parse versions following the SemVer syntax.
 A version is vulnerable if it's contained in any of the known vulnerable version
@@ -41,7 +41,7 @@ The `init` task ([found here](lib/tasks/init.ex)) is used to perform a git clone
 of the above-mentioned repository and populates the mnesia database with the
 data analyzed from the clone.
 
-The `analyze` task is the intended user exposed interface, and it receives as argument the path to a
+The [`analyze`](lib/tasks/analyze.ex) task finally is the intended user exposed interface, and it receives as argument the path to a
 composer.lock file to analyze for vulnerabilities:
 
     ~/P/symfony_vuln_checker (master|✚1) $ mix analyze ../symfony-standard/composer.lock
